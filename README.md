@@ -52,8 +52,9 @@ WebSite-V5/
    ```
 
 2. **Run with PHP Built-in Server:**
+   Use `index.php` (or a custom router script) as the front router to ensure clean URL routes (`/community`, `/funding`, `/roadmap`, `/hiring`, `/donate`) are dispatched properly:
    ```bash
-   php -S localhost:8000
+   php -S localhost:8000 index.php
    ```
 
 3. **Open in Browser:**
