@@ -1,0 +1,1517 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G2MD4PXZ6R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G2MD4PXZ6R');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>LavaDev Tools</title>
+
+<style>
+    * {
+        box-sizing: border-box;
+    }
+
+    body {
+        margin: 0;
+        font-family: Arial, Helvetica, sans-serif;
+        background: #f4f5f7;
+        color: #222;
+    }
+
+    header {
+        background: #111;
+        color: white;
+        padding: 22px 30px;
+    }
+
+    header h1 {
+        margin: 0;
+        font-size: 23px;
+    }
+
+    header p {
+        margin: 5px 0 0;
+        color: #bbb;
+        font-size: 14px;
+    }
+
+    .layout {
+        max-width: 1250px;
+        margin: 30px auto;
+        padding: 0 20px;
+        display: grid;
+        grid-template-columns: 230px 1fr;
+        gap: 25px;
+    }
+
+    .sidebar {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        height: fit-content;
+        position: sticky;
+        top: 20px;
+    }
+
+    .sidebar button {
+        width: 100%;
+        text-align: left;
+        border: 0;
+        background: transparent;
+        padding: 11px;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 14px;
+    }
+
+    .sidebar button:hover,
+    .sidebar button.active {
+        background: #eee;
+    }
+
+    .section {
+        display: none;
+    }
+
+    .section.active {
+        display: block;
+    }
+
+    .section-title {
+        margin-bottom: 18px;
+    }
+
+    .section-title h2 {
+        margin: 0;
+        font-size: 21px;
+    }
+
+    .section-title p {
+        color: #777;
+        margin-top: 5px;
+        font-size: 14px;
+    }
+
+    .generator-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 18px;
+    }
+
+    .card {
+        background: white;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 20px;
+    }
+
+    .card.full {
+        grid-column: 1 / -1;
+    }
+
+    .card h3 {
+        margin: 0 0 5px;
+        font-size: 16px;
+    }
+
+    .card p {
+        color: #777;
+        font-size: 13px;
+        margin-top: 5px;
+    }
+
+    label {
+        display: block;
+        margin-top: 13px;
+        margin-bottom: 5px;
+        font-size: 13px;
+        font-weight: bold;
+    }
+
+    input,
+    textarea,
+    select {
+        width: 100%;
+        padding: 10px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        font: inherit;
+        font-size: 14px;
+    }
+
+    textarea {
+        min-height: 110px;
+        resize: vertical;
+    }
+
+    button.primary {
+        margin-top: 15px;
+        border: 0;
+        background: #111;
+        color: white;
+        padding: 10px 15px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    button.primary:hover {
+        background: #333;
+    }
+
+    .output {
+        margin-top: 15px;
+        background: #f7f7f7;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        padding: 15px;
+        white-space: pre-wrap;
+        font-size: 13px;
+        min-height: 50px;
+    }
+
+    .signature-preview {
+        padding: 25px;
+        border: 1px solid #ddd;
+        margin-top: 15px;
+        overflow-x: auto;
+        background: white;
+    }
+
+    .certificate {
+        border: 8px solid #222;
+        padding: 55px 30px;
+        text-align: center;
+        margin-top: 15px;
+        background: white;
+    }
+
+    .certificate h1 {
+        font-size: 30px;
+        margin: 0;
+    }
+
+    .certificate .recipient {
+        font-size: 25px;
+        margin: 30px 0 15px;
+        font-weight: bold;
+    }
+
+    .id-card {
+        width: 350px;
+        max-width: 100%;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        overflow: hidden;
+        margin-top: 15px;
+        background: white;
+    }
+
+    .id-top {
+        background: #111;
+        color: white;
+        padding: 15px;
+        font-weight: bold;
+    }
+
+    .id-body {
+        padding: 18px;
+    }
+
+    .asset-label {
+        display: inline-block;
+        border: 2px solid #111;
+        padding: 18px 25px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    @media(max-width: 850px) {
+        .layout {
+            grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+            position: static;
+        }
+
+        .generator-grid {
+            grid-template-columns: 1fr;
+        }
+
+        .card.full {
+            grid-column: auto;
+        }
+    }
+</style>
+</head>
+
+<body>
+
+<header>
+    <h1>LavaDev Tools</h1>
+    <p>Internal tools for staff and administration</p>
+</header>
+
+<div class="layout">
+
+    <aside class="sidebar">
+        <button class="active" onclick="showSection('it', this)">IT & Admin</button>
+        <button onclick="showSection('staff', this)">Staff & HR</button>
+        <button onclick="showSection('web', this)">Website</button>
+        <button onclick="showSection('security', this)">Security</button>
+        <button onclick="showSection('business', this)">Business</button>
+    </aside>
+
+    <main>
+
+        <!-- IT & ADMIN -->
+        <section id="it" class="section active">
+
+            <div class="section-title">
+                <h2>IT & Admin</h2>
+                <p>Tools for everyday IT and administration work.</p>
+            </div>
+
+            <div class="generator-grid">
+
+                <div class="card">
+                    <h3>Password Generator</h3>
+                    <p>Generate a random password.</p>
+
+                    <label>Length</label>
+                    <input id="passLength" type="number" value="18" min="8" max="100">
+
+                    <button class="primary" onclick="generatePassword()">
+                        Generate
+                    </button>
+
+                    <div class="output" id="passwordOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Username Generator</h3>
+                    <p>Create a simple LavaDev username.</p>
+
+                    <label>First Name</label>
+                    <input id="userFirst">
+
+                    <label>Last Name</label>
+                    <input id="userLast">
+
+                    <button class="primary" onclick="generateUsername()">
+                        Generate
+                    </button>
+
+                    <div class="output" id="usernameOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Incident Report</h3>
+
+                    <label>Date</label>
+                    <input id="incidentDate" type="date">
+
+                    <label>Reported By</label>
+                    <input id="incidentPerson">
+
+                    <label>Location</label>
+                    <input id="incidentLocation">
+
+                    <label>What happened?</label>
+                    <textarea id="incidentDetails"></textarea>
+
+                    <label>Action Taken</label>
+                    <textarea id="incidentAction"></textarea>
+
+                    <button class="primary" onclick="incidentReport()">
+                        Create Report
+                    </button>
+
+                    <div class="output" id="incidentOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>IT Support Ticket</h3>
+
+                    <label>Name</label>
+                    <input id="ticketName">
+
+                    <label>Issue</label>
+                    <input id="ticketIssue">
+
+                    <label>Description</label>
+                    <textarea id="ticketDescription"></textarea>
+
+                    <label>Priority</label>
+                    <select id="ticketPriority">
+                        <option>Low</option>
+                        <option selected>Normal</option>
+                        <option>High</option>
+                        <option>Urgent</option>
+                    </select>
+
+                    <button class="primary" onclick="supportTicket()">
+                        Create Ticket
+                    </button>
+
+                    <div class="output" id="ticketOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Asset Label</h3>
+
+                    <label>Asset Name</label>
+                    <input id="assetName">
+
+                    <label>Asset ID</label>
+                    <input id="assetID" placeholder="LAVA-0001">
+
+                    <label>Assigned To</label>
+                    <input id="assetPerson">
+
+                    <button class="primary" onclick="assetLabel()">
+                        Create Label
+                    </button>
+
+                    <div id="assetOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Wi-Fi Card</h3>
+
+                    <label>Network Name</label>
+                    <input id="wifiName">
+
+                    <label>Password</label>
+                    <input id="wifiPassword">
+
+                    <button class="primary" onclick="wifiCard()">
+                        Create Card
+                    </button>
+
+                    <div class="output" id="wifiOutput"></div>
+                </div>
+
+                <div class="card full">
+                    <h3>Meeting Minutes</h3>
+
+                    <label>Meeting</label>
+                    <input id="meetingName">
+
+                    <label>Date</label>
+                    <input id="meetingDate" type="date">
+
+                    <label>Attendees</label>
+                    <input id="meetingAttendees">
+
+                    <label>Notes</label>
+                    <textarea id="meetingNotes"></textarea>
+
+                    <button class="primary" onclick="meetingMinutes()">
+                        Create Minutes
+                    </button>
+
+                    <div class="output" id="meetingOutput"></div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- STAFF & HR -->
+        <section id="staff" class="section">
+
+            <div class="section-title">
+                <h2>Staff & HR</h2>
+                <p>Documents and information for LavaDev staff.</p>
+            </div>
+
+            <div class="generator-grid">
+
+                <div class="card full">
+                    <h3>Email Signature</h3>
+
+                    <label>Full Name</label>
+                    <input id="sigName">
+
+                    <label>Job Title</label>
+                    <input id="sigTitle">
+
+                    <label>Phone</label>
+                    <input id="sigPhone">
+
+                    <label>Email</label>
+                    <input id="sigEmail">
+
+                    <button class="primary" onclick="signature()">
+                        Generate Signature
+                    </button>
+
+                    <div class="signature-preview" id="signatureOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Job Description</h3>
+
+                    <label>Position</label>
+                    <input id="jobPosition">
+
+                    <label>Department</label>
+                    <input id="jobDepartment">
+
+                    <label>Reports To</label>
+                    <input id="jobReports">
+
+                    <label>Responsibilities</label>
+                    <textarea id="jobResponsibilities"></textarea>
+
+                    <button class="primary" onclick="jobDescription()">
+                        Create
+                    </button>
+
+                    <div class="output" id="jobOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Staff Welcome Letter</h3>
+
+                    <label>Name</label>
+                    <input id="welcomeName">
+
+                    <label>Position</label>
+                    <input id="welcomePosition">
+
+                    <label>Start Date</label>
+                    <input id="welcomeDate" type="date">
+
+                    <button class="primary" onclick="welcomeLetter()">
+                        Create Letter
+                    </button>
+
+                    <div class="output" id="welcomeOutput"></div>
+                </div>
+
+                <div class="card full">
+                    <h3>Certificate Generator</h3>
+
+                    <label>Name</label>
+                    <input id="certName">
+
+                    <label>Certificate Title</label>
+                    <input id="certTitle" value="Certificate of Recognition">
+
+                    <label>Description</label>
+                    <textarea id="certDescription"></textarea>
+
+                    <button class="primary" onclick="certificate()">
+                        Create Certificate
+                    </button>
+
+                    <div id="certificateOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Staff ID Card</h3>
+
+                    <label>Name</label>
+                    <input id="idName">
+
+                    <label>Position</label>
+                    <input id="idPosition">
+
+                    <label>Staff ID</label>
+                    <input id="idNumber">
+
+                    <button class="primary" onclick="staffID()">
+                        Create ID Card
+                    </button>
+
+                    <div id="idOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Onboarding Checklist</h3>
+
+                    <label>Staff Member</label>
+                    <input id="onboardName">
+
+                    <button class="primary" onclick="onboarding()">
+                        Create Checklist
+                    </button>
+
+                    <div class="output" id="onboardOutput"></div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- WEBSITE -->
+        <section id="web" class="section">
+
+            <div class="section-title">
+                <h2>Website</h2>
+                <p>Website utilities for LavaDev.xyz.</p>
+            </div>
+
+            <div class="generator-grid">
+
+                <div class="card">
+                    <h3>Meta Tag Generator</h3>
+
+                    <label>Page Title</label>
+                    <input id="metaTitle">
+
+                    <label>Description</label>
+                    <textarea id="metaDescription"></textarea>
+
+                    <label>Page URL</label>
+                    <input id="metaURL">
+
+                    <button class="primary" onclick="metaTags()">
+                        Generate
+                    </button>
+
+                    <div class="output" id="metaOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Open Graph Generator</h3>
+
+                    <label>Title</label>
+                    <input id="ogTitle">
+
+                    <label>Description</label>
+                    <textarea id="ogDescription"></textarea>
+
+                    <label>Image URL</label>
+                    <input id="ogImage">
+
+                    <label>URL</label>
+                    <input id="ogURL">
+
+                    <button class="primary" onclick="openGraph()">
+                        Generate
+                    </button>
+
+                    <div class="output" id="ogOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>robots.txt Generator</h3>
+
+                    <label>Sitemap URL</label>
+                    <input id="robotsSitemap"
+                           value="https://lavadev.xyz/sitemap.xml">
+
+                    <button class="primary" onclick="robots()">
+                        Generate
+                    </button>
+
+                    <div class="output" id="robotsOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Favicon HTML</h3>
+
+                    <label>Favicon URL</label>
+                    <input id="faviconURL">
+
+                    <button class="primary" onclick="favicon()">
+                        Generate
+                    </button>
+
+                    <div class="output" id="faviconOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>HTML Button</h3>
+
+                    <label>Button Text</label>
+                    <input id="buttonText">
+
+                    <label>Link</label>
+                    <input id="buttonURL">
+
+                    <button class="primary" onclick="htmlButton()">
+                        Generate
+                    </button>
+
+                    <div class="output" id="buttonOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Social Media Bio</h3>
+
+                    <label>Name</label>
+                    <input id="bioName">
+
+                    <label>Role</label>
+                    <input id="bioRole">
+
+                    <label>Extra Information</label>
+                    <textarea id="bioExtra"></textarea>
+
+                    <button class="primary" onclick="socialBio()">
+                        Generate
+                    </button>
+
+                    <div class="output" id="bioOutput"></div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- SECURITY -->
+        <section id="security" class="section">
+
+            <div class="section-title">
+                <h2>Security</h2>
+                <p>Security utilities for LavaDev.</p>
+            </div>
+
+            <div class="generator-grid">
+
+                <div class="card">
+                    <h3>API Key Generator</h3>
+                    <p>Creates a random local API key.</p>
+
+                    <button class="primary" onclick="apiKey()">
+                        Generate API Key
+                    </button>
+
+                    <div class="output" id="apiOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>UUID Generator</h3>
+
+                    <button class="primary" onclick="uuid()">
+                        Generate UUID
+                    </button>
+
+                    <div class="output" id="uuidOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Random Token</h3>
+
+                    <label>Length</label>
+                    <input id="tokenLength" type="number" value="32">
+
+                    <button class="primary" onclick="token()">
+                        Generate Token
+                    </button>
+
+                    <div class="output" id="tokenOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>2FA Backup Codes</h3>
+
+                    <button class="primary" onclick="backupCodes()">
+                        Generate 10 Codes
+                    </button>
+
+                    <div class="output" id="backupOutput"></div>
+                </div>
+
+            </div>
+        </section>
+
+
+        <!-- BUSINESS -->
+        <section id="business" class="section">
+
+            <div class="section-title">
+                <h2>Business</h2>
+                <p>Planning and business administration tools.</p>
+            </div>
+
+            <div class="generator-grid">
+
+                <div class="card">
+                    <h3>SWOT Analysis</h3>
+
+                    <label>Subject</label>
+                    <input id="swotSubject">
+
+                    <label>Strengths</label>
+                    <textarea id="swotStrengths"></textarea>
+
+                    <label>Weaknesses</label>
+                    <textarea id="swotWeaknesses"></textarea>
+
+                    <label>Opportunities</label>
+                    <textarea id="swotOpportunities"></textarea>
+
+                    <label>Threats</label>
+                    <textarea id="swotThreats"></textarea>
+
+                    <button class="primary" onclick="swot()">
+                        Create SWOT
+                    </button>
+
+                    <div class="output" id="swotOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Invoice</h3>
+
+                    <label>Customer</label>
+                    <input id="invoiceCustomer">
+
+                    <label>Invoice Number</label>
+                    <input id="invoiceNumber">
+
+                    <label>Description</label>
+                    <input id="invoiceDescription">
+
+                    <label>Amount</label>
+                    <input id="invoiceAmount" type="number">
+
+                    <button class="primary" onclick="invoice()">
+                        Create Invoice
+                    </button>
+
+                    <div class="output" id="invoiceOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Quote</h3>
+
+                    <label>Customer</label>
+                    <input id="quoteCustomer">
+
+                    <label>Service</label>
+                    <input id="quoteService">
+
+                    <label>Amount</label>
+                    <input id="quoteAmount" type="number">
+
+                    <button class="primary" onclick="quote()">
+                        Create Quote
+                    </button>
+
+                    <div class="output" id="quoteOutput"></div>
+                </div>
+
+                <div class="card">
+                    <h3>Expense Report</h3>
+
+                    <label>Name</label>
+                    <input id="expenseName">
+
+                    <label>Expense</label>
+                    <input id="expenseDescription">
+
+                    <label>Amount</label>
+                    <input id="expenseAmount" type="number">
+
+                    <label>Date</label>
+                    <input id="expenseDate" type="date">
+
+                    <button class="primary" onclick="expense()">
+                        Create Report
+                    </button>
+
+                    <div class="output" id="expenseOutput"></div>
+                </div>
+
+                <div class="card full">
+                    <h3>Project Proposal</h3>
+
+                    <label>Project Name</label>
+                    <input id="projectName">
+
+                    <label>Objective</label>
+                    <textarea id="projectObjective"></textarea>
+
+                    <label>Scope</label>
+                    <textarea id="projectScope"></textarea>
+
+                    <label>Expected Outcome</label>
+                    <textarea id="projectOutcome"></textarea>
+
+                    <button class="primary" onclick="proposal()">
+                        Create Proposal
+                    </button>
+
+                    <div class="output" id="proposalOutput"></div>
+                </div>
+
+                <div class="card full">
+                    <h3>Risk Assessment</h3>
+
+                    <label>Activity / Project</label>
+                    <input id="riskProject">
+
+                    <label>Hazard / Risk</label>
+                    <textarea id="riskHazard"></textarea>
+
+                    <label>Likelihood</label>
+                    <select id="riskLikelihood">
+                        <option>Rare</option>
+                        <option>Unlikely</option>
+                        <option>Possible</option>
+                        <option>Likely</option>
+                        <option>Almost Certain</option>
+                    </select>
+
+                    <label>Controls</label>
+                    <textarea id="riskControls"></textarea>
+
+                    <button class="primary" onclick="riskAssessment()">
+                        Create Assessment
+                    </button>
+
+                    <div class="output" id="riskOutput"></div>
+                </div>
+
+            </div>
+        </section>
+
+    </main>
+</div>
+
+
+<script>
+
+/* NAVIGATION */
+
+function showSection(id, button) {
+
+    document.querySelectorAll(".section")
+        .forEach(section => section.classList.remove("active"));
+
+    document.querySelectorAll(".sidebar button")
+        .forEach(btn => btn.classList.remove("active"));
+
+    document.getElementById(id).classList.add("active");
+
+    button.classList.add("active");
+}
+
+
+function value(id) {
+    return document.getElementById(id).value;
+}
+
+
+/* PASSWORD */
+
+function generatePassword() {
+
+    const length = Number(value("passLength"));
+
+    const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*";
+
+    let password = "";
+
+    for (let i = 0; i < length; i++) {
+        password += chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    document.getElementById("passwordOutput").textContent = password;
+}
+
+
+/* USERNAME */
+
+function generateUsername() {
+
+    const first =
+        value("userFirst").toLowerCase().replace(/\s/g, "");
+
+    const last =
+        value("userLast").toLowerCase().replace(/\s/g, "");
+
+    if (!first || !last) return;
+
+    document.getElementById("usernameOutput").textContent =
+        first.charAt(0) + last + " @lavadev.xyz";
+}
+
+
+/* INCIDENT */
+
+function incidentReport() {
+
+    document.getElementById("incidentOutput").textContent =
+`LAVADEV INCIDENT REPORT
+
+Date: ${value("incidentDate")}
+Reported By: ${value("incidentPerson")}
+Location: ${value("incidentLocation")}
+
+WHAT HAPPENED
+${value("incidentDetails")}
+
+ACTION TAKEN
+${value("incidentAction")}`;
+}
+
+
+/* IT TICKET */
+
+function supportTicket() {
+
+    document.getElementById("ticketOutput").textContent =
+`LAVADEV IT SUPPORT TICKET
+
+Name: ${value("ticketName")}
+Issue: ${value("ticketIssue")}
+Priority: ${value("ticketPriority")}
+
+DESCRIPTION
+${value("ticketDescription")}`;
+}
+
+
+/* ASSET */
+
+function assetLabel() {
+
+    document.getElementById("assetOutput").innerHTML = `
+        <div class="asset-label">
+            <strong>LAVADEV</strong><br>
+            ${value("assetName")}<br>
+            <strong>${value("assetID")}</strong><br>
+            ${value("assetPerson")}
+        </div>
+    `;
+}
+
+
+/* WIFI */
+
+function wifiCard() {
+
+    document.getElementById("wifiOutput").textContent =
+`LAVADEV WI-FI
+
+Network:
+${value("wifiName")}
+
+Password:
+${value("wifiPassword")}`;
+}
+
+
+/* MEETING */
+
+function meetingMinutes() {
+
+    document.getElementById("meetingOutput").textContent =
+`LAVADEV MEETING MINUTES
+
+Meeting: ${value("meetingName")}
+Date: ${value("meetingDate")}
+Attendees: ${value("meetingAttendees")}
+
+NOTES
+
+${value("meetingNotes")}
+
+ACTION ITEMS
+
+-
+
+NEXT MEETING
+
+-`;
+}
+
+
+/* EMAIL SIGNATURE */
+
+function signature() {
+
+    const name = value("sigName") || "Your Name";
+    const title = value("sigTitle") || "Job Title";
+    const phone = value("sigPhone") || "Phone Number";
+    const email = value("sigEmail") || "email@lavadev.xyz";
+
+    document.getElementById("signatureOutput").innerHTML = `
+
+<table cellpadding="0" cellspacing="0" border="0"
+style="font-family:Arial,Helvetica,sans-serif;font-size:14px;color:#333333;">
+
+<tr>
+
+<td style="padding-right:15px;vertical-align:top;">
+
+<strong style="font-size:22px;color:#111;">
+LavaDev
+</strong>
+
+</td>
+
+<td style="width:2px;background:#cccccc;"></td>
+
+<td style="padding-left:15px;vertical-align:top;">
+
+<strong style="font-size:16px;color:#111;">
+${name}
+</strong><br>
+
+${title}<br>
+
+<strong>P:</strong> ${phone}<br>
+
+<strong>E:</strong>
+<a href="mailto:${email}"
+style="color:#0066cc;text-decoration:none;">
+${email}
+</a><br>
+
+<strong>W:</strong>
+<a href="https://lavadev.xyz"
+style="color:#0066cc;text-decoration:none;">
+LavaDev.xyz
+</a>
+
+</td>
+
+</tr>
+</table>
+
+`;
+}
+
+
+/* JOB DESCRIPTION */
+
+function jobDescription() {
+
+    document.getElementById("jobOutput").textContent =
+`LAVADEV
+
+JOB DESCRIPTION
+
+Position:
+${value("jobPosition")}
+
+Department:
+${value("jobDepartment")}
+
+Reports To:
+${value("jobReports")}
+
+RESPONSIBILITIES
+
+${value("jobResponsibilities")}`;
+}
+
+
+/* WELCOME LETTER */
+
+function welcomeLetter() {
+
+    document.getElementById("welcomeOutput").textContent =
+`Dear ${value("welcomeName")},
+
+Welcome to LavaDev.
+
+We are pleased to welcome you to the team as ${value("welcomePosition")}.
+
+Your start date is ${value("welcomeDate")}.
+
+We look forward to working with you.
+
+Regards,
+
+LavaDev
+LavaDev.xyz`;
+}
+
+
+/* CERTIFICATE */
+
+function certificate() {
+
+    document.getElementById("certificateOutput").innerHTML = `
+
+<div class="certificate">
+
+    <div>LAVADEV</div>
+
+    <h1>${value("certTitle")}</h1>
+
+    <div class="recipient">
+        ${value("certName")}
+    </div>
+
+    <p>${value("certDescription")}</p>
+
+    <br>
+
+    <p>Presented by LavaDev</p>
+
+    <p class="muted">LavaDev.xyz</p>
+
+</div>
+
+`;
+}
+
+
+/* STAFF ID */
+
+function staffID() {
+
+    document.getElementById("idOutput").innerHTML = `
+
+<div class="id-card">
+
+    <div class="id-top">
+        LAVADEV
+    </div>
+
+    <div class="id-body">
+
+        <strong style="font-size:20px;">
+            ${value("idName")}
+        </strong>
+
+        <br><br>
+
+        ${value("idPosition")}
+
+        <br><br>
+
+        <strong>Staff ID:</strong>
+        ${value("idNumber")}
+
+    </div>
+
+</div>
+
+`;
+}
+
+
+/* ONBOARDING */
+
+function onboarding() {
+
+    document.getElementById("onboardOutput").textContent =
+`LAVADEV STAFF ONBOARDING
+
+Staff Member:
+${value("onboardName")}
+
+CHECKLIST
+
+[ ] LavaDev account created
+[ ] Email configured
+[ ] 2-Step Verification enabled
+[ ] Access to required systems
+[ ] Equipment provided
+[ ] Policies provided
+[ ] Introduction completed
+[ ] Training completed
+[ ] Manager check-in completed`;
+}
+
+
+/* META TAGS */
+
+function metaTags() {
+
+    document.getElementById("metaOutput").textContent =
+`<title>${value("metaTitle")}</title>
+
+<meta name="description" content="${value("metaDescription")}">
+
+<link rel="canonical" href="${value("metaURL")}">`;
+}
+
+
+/* OPEN GRAPH */
+
+function openGraph() {
+
+    document.getElementById("ogOutput").textContent =
+`<meta property="og:title" content="${value("ogTitle")}">
+<meta property="og:description" content="${value("ogDescription")}">
+<meta property="og:image" content="${value("ogImage")}">
+<meta property="og:url" content="${value("ogURL")}">
+<meta property="og:type" content="website">`;
+}
+
+
+/* ROBOTS */
+
+function robots() {
+
+    document.getElementById("robotsOutput").textContent =
+`User-agent: *
+Allow: /
+
+Sitemap: ${value("robotsSitemap")}`;
+}
+
+
+/* FAVICON */
+
+function favicon() {
+
+    document.getElementById("faviconOutput").textContent =
+`<link rel="icon" type="image/png" href="${value("faviconURL")}">`;
+}
+
+
+/* HTML BUTTON */
+
+function htmlButton() {
+
+    document.getElementById("buttonOutput").textContent =
+`<a href="${value("buttonURL")}"
+style="display:inline-block;padding:10px 18px;background:#111;color:#fff;text-decoration:none;border-radius:5px;">
+${value("buttonText")}
+</a>`;
+}
+
+
+/* SOCIAL BIO */
+
+function socialBio() {
+
+    document.getElementById("bioOutput").textContent =
+`${value("bioName")}
+${value("bioRole")}
+
+${value("bioExtra")}
+
+LavaDev
+LavaDev.xyz`;
+}
+
+
+/* API KEY */
+
+function randomHex(length) {
+
+    const chars = "abcdef0123456789";
+
+    let result = "";
+
+    for (let i = 0; i < length; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    return result;
+}
+
+
+function apiKey() {
+
+    document.getElementById("apiOutput").textContent =
+        "lava_" + randomHex(48);
+}
+
+
+/* UUID */
+
+function uuid() {
+
+    document.getElementById("uuidOutput").textContent =
+        crypto.randomUUID();
+}
+
+
+/* TOKEN */
+
+function token() {
+
+    const chars =
+        "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+    const length = Number(value("tokenLength"));
+
+    let result = "";
+
+    for (let i = 0; i < length; i++) {
+        result += chars[Math.floor(Math.random() * chars.length)];
+    }
+
+    document.getElementById("tokenOutput").textContent = result;
+}
+
+
+/* BACKUP CODES */
+
+function backupCodes() {
+
+    let result = "";
+
+    for (let i = 0; i < 10; i++) {
+
+        result +=
+            Math.floor(10000000 + Math.random() * 90000000)
+            + "\n";
+    }
+
+    document.getElementById("backupOutput").textContent = result;
+}
+
+
+/* SWOT */
+
+function swot() {
+
+    document.getElementById("swotOutput").textContent =
+`SWOT ANALYSIS
+
+Subject:
+${value("swotSubject")}
+
+STRENGTHS
+${value("swotStrengths")}
+
+WEAKNESSES
+${value("swotWeaknesses")}
+
+OPPORTUNITIES
+${value("swotOpportunities")}
+
+THREATS
+${value("swotThreats")}`;
+}
+
+
+/* INVOICE */
+
+function invoice() {
+
+    document.getElementById("invoiceOutput").textContent =
+`LAVADEV INVOICE
+
+Invoice Number:
+${value("invoiceNumber")}
+
+Customer:
+${value("invoiceCustomer")}
+
+Description:
+${value("invoiceDescription")}
+
+Amount:
+$${value("invoiceAmount")}
+
+LavaDev
+LavaDev.xyz`;
+}
+
+
+/* QUOTE */
+
+function quote() {
+
+    document.getElementById("quoteOutput").textContent =
+`LAVADEV QUOTATION
+
+Customer:
+${value("quoteCustomer")}
+
+Service:
+${value("quoteService")}
+
+Quoted Amount:
+$${value("quoteAmount")}
+
+LavaDev
+LavaDev.xyz`;
+}
+
+
+/* EXPENSE */
+
+function expense() {
+
+    document.getElementById("expenseOutput").textContent =
+`LAVADEV EXPENSE REPORT
+
+Name:
+${value("expenseName")}
+
+Date:
+${value("expenseDate")}
+
+Expense:
+${value("expenseDescription")}
+
+Amount:
+$${value("expenseAmount")}
+
+Employee Signature:
+
+____________________________`;
+}
+
+
+/* PROJECT PROPOSAL */
+
+function proposal() {
+
+    document.getElementById("proposalOutput").textContent =
+`LAVADEV PROJECT PROPOSAL
+
+PROJECT
+${value("projectName")}
+
+OBJECTIVE
+${value("projectObjective")}
+
+SCOPE
+${value("projectScope")}
+
+EXPECTED OUTCOME
+${value("projectOutcome")}
+
+Prepared for LavaDev.
+LavaDev.xyz`;
+}
+
+
+/* RISK ASSESSMENT */
+
+function riskAssessment() {
+
+    document.getElementById("riskOutput").textContent =
+`LAVADEV RISK ASSESSMENT
+
+Activity / Project:
+${value("riskProject")}
+
+RISK / HAZARD
+${value("riskHazard")}
+
+LIKELIHOOD
+${value("riskLikelihood")}
+
+CONTROLS
+${value("riskControls")}
+
+Additional Notes:
+
+________________________________`;
+}
+
+</script>
+
+</body>
+</html>

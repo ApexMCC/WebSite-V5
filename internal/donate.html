@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G2MD4PXZ6R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G2MD4PXZ6R');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Donate | Apex MCC</title>
+<link rel="icon" type="image/png" href="../cdn/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200..1000&family=Nunito:wght@200..1000&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html, body {
+  width: 100%;
+  min-height: 100vh;
+  overflow-x: hidden;
+  font-family: 'Nunito Sans', sans-serif;
+  background: #000;
+  color: #fff;
+}
+
+/* navbar */
+.navbar {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 28px;
+  background: rgba(0, 0, 0, 0.72);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(255,255,255,0.09);
+}
+.navbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  text-decoration: none;
+  color: #eaf1eb;
+}
+.navbar-logo { height: 36px; width: auto; object-fit: contain; }
+.navbar-left { display: flex; align-items: center; gap: 12px; }
+.navbar-right { display: flex; align-items: center; gap: 8px; }
+.navbar-link {
+  padding: 8px 14px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  color: rgba(255,255,255,0.45);
+  text-decoration: none;
+  border-radius: 8px;
+  transition: color 0.15s, background 0.15s;
+}
+.navbar-link:hover, .navbar-link.active { color: #fff; background: rgba(255,255,255,0.06); }
+.navbar-cta {
+  display: inline-flex;
+  align-items: center;
+  padding: 9px 20px;
+  font-family: 'Nunito', sans-serif;
+  font-size: 13px;
+  font-weight: 700;
+  color: #06130a;
+  background: #3bc94e;
+  border-radius: 20px;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.06s;
+}
+.navbar-cta:hover { background: #33a33f; }
+.navbar-cta:active { transform: scale(0.97); }
+
+/* page hero */
+.donate-hero {
+  padding: 140px 80px 60px;
+  max-width: 900px;
+  margin: 0 auto;
+  text-align: center;
+}
+.donate-hero h1 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  margin-bottom: 16px;
+}
+.donate-hero h1 span { color: #3bc94e; }
+.donate-hero p {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255,255,255,0.6);
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+/* donate card */
+.donate-card-wrap {
+  padding: 20px 80px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.donate-card {
+  display: block;
+  text-decoration: none;
+  color: #fff;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 20px;
+  padding: 48px 40px;
+  transition: 0.3s;
+  cursor: pointer;
+}
+.donate-card:hover {
+  border-color: rgba(59,201,78,0.35);
+  background: rgba(255,255,255,0.05);
+  transform: translateY(-4px);
+  box-shadow: 0 12px 40px rgba(59,201,78,0.1);
+}
+
+.donate-card-top {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 32px;
+}
+.donate-card-icon {
+  width: 72px;
+  height: 72px;
+  border-radius: 16px;
+  background: rgba(59,201,78,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+.donate-card-icon svg {
+  width: 36px;
+  height: 36px;
+  color: #3bc94e;
+}
+.donate-card-top h2 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 900;
+  font-size: 1.6rem;
+  margin-bottom: 4px;
+}
+.donate-card-top p {
+  font-size: 0.92rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+}
+
+/* methods grid */
+.donate-methods {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+.method-item {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 18px 20px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 12px;
+  transition: 0.2s;
+}
+.donate-card:hover .method-item {
+  border-color: rgba(59,201,78,0.15);
+}
+.method-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 10px;
+  background: rgba(255,255,255,0.06);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+.method-info h4 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 700;
+  font-size: 0.9rem;
+  margin-bottom: 2px;
+}
+.method-info p {
+  font-size: 0.78rem;
+  color: rgba(255,255,255,0.4);
+}
+
+.donate-card-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px 32px;
+  background: #3bc94e;
+  color: #000;
+  border-radius: 12px;
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 0.95rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  transition: 0.2s;
+}
+.donate-card:hover .donate-card-cta {
+  background: #45d958;
+  box-shadow: 0 6px 20px rgba(59,201,78,0.3);
+}
+.donate-card-cta svg {
+  width: 18px;
+  height: 18px;
+}
+
+/* info section */
+.donate-info {
+  padding: 0 80px 80px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+.donate-info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+.info-card {
+  padding: 28px 24px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 14px;
+}
+.info-card h3 {
+  font-family: 'Nunito', sans-serif;
+  font-weight: 800;
+  font-size: 1rem;
+  margin-bottom: 8px;
+  color: #3bc94e;
+}
+.info-card p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.6;
+}
+
+/* footer */
+.site-footer {
+  background: #000;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  color: rgba(255,255,255,0.6);
+  font-family: 'Nunito Sans', sans-serif;
+}
+.site-footer a { color: rgba(255,255,255,0.6); text-decoration: none; transition: color 0.15s; }
+.site-footer a:hover { color: #fff; }
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 72px 48px 36px;
+}
+
+.footer-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 2.2fr;
+  gap: 64px;
+  align-items: start;
+}
+
+/* brand block */
+.footer-logo { display: inline-block; }
+.footer-logo img { height: 26px; width: auto; }
+.footer-tagline {
+  margin-top: 14px;
+  max-width: 300px;
+  font-size: 0.9375rem;
+  line-height: 1.55;
+  color: rgba(255,255,255,0.55);
+}
+.footer-form {
+  margin-top: 22px;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  max-width: 360px;
+  padding: 5px 5px 5px 18px;
+  border: 1px solid rgba(255,255,255,0.16);
+  border-radius: 999px;
+  background: rgba(255,255,255,0.04);
+  transition: border-color 0.15s;
+}
+.footer-form:focus-within { border-color: rgba(255,255,255,0.4); }
+.footer-form input {
+  flex: 1;
+  min-width: 0;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: #fff;
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.875rem;
+}
+.footer-form input::placeholder { color: rgba(255,255,255,0.32); }
+.footer-form button {
+  flex-shrink: 0;
+  height: 36px;
+  padding: 0 18px;
+  border: none;
+  border-radius: 999px;
+  background: #fff;
+  color: #000;
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+.footer-form button:hover { background: rgba(255,255,255,0.85); }
+.footer-note {
+  margin-top: 12px;
+  max-width: 320px;
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: rgba(255,255,255,0.35);
+}
+
+/* link columns */
+.footer-cols {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 40px;
+}
+.footer-col-title {
+  font-family: 'Nunito', sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 16px;
+}
+.footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.footer-col a, .footer-soon { font-size: 0.875rem; line-height: 1.4; }
+.footer-soon { color: rgba(255,255,255,0.3); }
+
+/* bottom bar */
+.footer-bottom {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 24px;
+  font-size: 0.8125rem;
+  color: rgba(255,255,255,0.4);
+}
+.footer-links { display: flex; align-items: center; flex-wrap: wrap; gap: 20px; }
+.footer-links a { font-size: 0.8125rem; color: rgba(255,255,255,0.4); }
+.footer-links a:hover { color: #fff; }
+.footer-copy { font-size: 0.8125rem; color: rgba(255,255,255,0.4); }
+.footer-top {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0 0 0 8px;
+  color: rgba(255,255,255,0.4);
+  font-family: 'Nunito Sans', sans-serif;
+  font-size: 0.8125rem;
+  cursor: pointer;
+  transition: color 0.15s;
+}
+.footer-top:hover { color: #fff; }
+
+@media (max-width: 1000px) {
+  .footer-grid { grid-template-columns: 1fr; gap: 48px; }
+  .footer-inner { padding: 56px 32px 32px; }
+  .footer-bottom { margin-top: 48px; }
+}
+@media (max-width: 640px) {
+  .footer-cols { grid-template-columns: repeat(2, 1fr); gap: 32px 24px; }
+}
+@media (max-width: 480px) {
+  .footer-cols { grid-template-columns: 1fr; }
+  .footer-form { max-width: 100%; }
+}
+
+/* responsive */
+@media (max-width: 1000px) {
+  .donate-hero, .donate-card-wrap, .donate-info { padding-left: 32px; padding-right: 32px; }
+  .donate-card { padding: 36px 28px; }
+  .donate-card-top { flex-direction: column; text-align: center; }
+  .donate-info-grid { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .donate-hero, .donate-card-wrap, .donate-info { padding-left: 20px; padding-right: 20px; }
+  .donate-hero { padding-top: 120px; }
+  .donate-methods { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<nav class="navbar">
+  <div class="navbar-left">
+    <a class="navbar-brand" href="../index.html">
+      <img src="../cdn/apex_long.png" alt="Apex MCC" class="navbar-logo" />
+    </a>
+  </div>
+  <div class="navbar-right">
+    <a class="navbar-link" href="../index.html">Home</a>
+    <a class="navbar-cta" href="donate.html">Donate</a>
+  </div>
+</nav>
+
+<section class="donate-hero">
+  <h1>Support <span>Apex MCC</span></h1>
+  <p>Every contribution helps us build a space where diverse communities thrive. Choose a donation method that works for you.</p>
+</section>
+
+<div class="donate-card-wrap">
+  <!-- MAIN DONATE CARD — entire thing is a link -->
+  <a href="https://cash.app/f/POOL?id=r69jwqzs" target="_blank" class="donate-card">
+
+    <div class="donate-card-top">
+      <div class="donate-card-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+      </div>
+      <div>
+        <h2>Donate to Apex MCC</h2>
+        <p>Help us create Michigan's future multicultural community center.</p>
+      </div>
+    </div>
+
+    <div class="donate-methods">
+      <div class="method-item">
+        <div class="method-icon">💵</div>
+        <div class="method-info">
+          <h4>Cash App</h4>
+          <p>$ApexMCC</p>
+        </div>
+      </div>
+      <div class="method-item">
+        <div class="method-icon">🏦</div>
+        <div class="method-info">
+          <h4>Bank Transfer</h4>
+          <p>Direct deposit</p>
+        </div>
+      </div>
+      <div class="method-item">
+        <div class="method-icon">📱</div>
+        <div class="method-info">
+          <h4>Online</h4>
+          <p>Secure payment link</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="donate-card-cta">
+      Donate Now
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"/><path d="m12 5 7 7-7 7"/></svg>
+    </div>
+
+  </a>
+</div>
+
+<div class="donate-info">
+  <div class="donate-info-grid">
+    <div class="info-card">
+      <h3>100% Goes to the Cause</h3>
+      <p>Every dollar donated goes directly toward building and operating the Apex MCC community center.</p>
+    </div>
+    <div class="info-card">
+      <h3>Tax Deductible</h3>
+      <p>Apex MCC is a registered nonprofit. Your donation may be tax deductible — check with your tax advisor.</p>
+    </div>
+  </div>
+</div>
+
+<footer class="site-footer">
+    <div class="footer-inner">
+
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <a class="footer-logo" href="../index.html" aria-label="Apex MCC home">
+            <img src="../cdn/apex_long.png" alt="Apex MCC logo">
+          </a>
+          <p class="footer-tagline">Building Community. Empowering People. Providing Opportunity.</p>
+          <form class="footer-form" action="https://formspree.io/f/xrpgeegw" method="POST">
+            <input type="email" name="email" placeholder="you@email.com" aria-label="Email address" required />
+            <button type="submit">Sign up</button>
+          </form>
+          <p class="footer-note">Updates on events and milestones. No spam — unsubscribe anytime.</p>
+        </div>
+
+        <div class="footer-cols">
+          <div class="footer-col">
+            <h4 class="footer-col-title">Explore</h4>
+            <ul>
+              <li><a href="../index.html#about">What Is Apex MCC</a></li>
+              <li><a href="../index.html#about">Our Mission</a></li>
+              <li><a href="https://www.apexmcc.org/" target="_blank" rel="noreferrer">Official Website</a></li>
+              <li><a href="../calender.html">Visit Our Community Calender</a></li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Get Involved</h4>
+            <ul>
+              <li><a href="../index.html">Back to Home</a></li>
+              <li class="footer-soon">Volunteer — Coming Soon</li>
+              <li class="footer-soon">Interest Form — Coming Soon</li>
+            </ul>
+          </div>
+          <div class="footer-col">
+            <h4 class="footer-col-title">Contact</h4>
+            <ul>
+              <li><a href="https://www.instagram.com/" target="_blank" rel="noreferrer">Instagram</a></li>
+              <li><a href="https://www.facebook.com/" target="_blank" rel="noreferrer">Facebook</a></li>
+              <li><a href="https://x.com/ApexMCC" target="_blank" rel="noreferrer">X (Twitter)</a></li>
+              <li><a href="https://www.tiktok.com/" target="_blank" rel="noreferrer">TikTok</a></li>
+              <li><a href="https://www.linkedin.com/company/apexmcc/" target="_blank" rel="noreferrer">LinkedIn</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <span class="footer-copy">&copy; 2026 Apex MCC. All rights reserved.</span>
+        <div class="footer-links">
+          <a href="/coming-soon.html">Privacy</a>
+          <a href="/coming-soon.html">Terms</a>
+          <a href="/coming-soon.html">Site Map</a>
+          <button class="footer-top" onclick="window.scrollTo({top:0,behavior:'smooth'})">Back to top &uarr;</button>
+        </div>
+      </div>
+
+    </div>
+  </footer>
+
+</body>
+</html>

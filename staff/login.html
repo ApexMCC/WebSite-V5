@@ -1,0 +1,249 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-G2MD4PXZ6R"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-G2MD4PXZ6R');
+</script>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Apex One — Staff Sign In</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{
+min-height:100vh;
+background:#000;
+color:#f4f7f4;
+font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;
+display:flex;
+flex-direction:column
+}
+.top-logo{
+position:absolute;
+top:28px;
+left:32px
+}
+.top-logo img{width:150px;height:auto}
+main{
+flex:1;
+display:flex;
+align-items:center;
+justify-content:center;
+padding:100px 24px
+}
+.auth{
+width:100%;
+max-width:400px;
+text-align:center
+}
+.auth-brand{
+width:48px;
+height:48px;
+margin:0 auto 30px
+}
+.auth-brand img{
+width:100%;
+height:100%;
+object-fit:contain
+}
+.eyebrow{
+font-size:11px;
+font-weight:700;
+letter-spacing:.16em;
+text-transform:uppercase;
+color:#3bc94e;
+margin-bottom:12px
+}
+h1{
+font-size:32px;
+font-weight:600;
+letter-spacing:-.025em;
+margin-bottom:12px
+}
+.subtitle{
+font-size:14px;
+line-height:1.6;
+color:#858e87;
+max-width:330px;
+margin:0 auto
+}
+.auth-area{
+margin-top:32px
+}
+.auth-btn{
+width:100%;
+height:52px;
+border:0;
+border-radius:7px;
+background:#f4f7f4;
+color:#080a08;
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+font-size:14px;
+font-weight:600;
+cursor:pointer;
+transition:.15s
+}
+.auth-btn:hover{
+background:#dfe6e0;
+transform:translateY(-1px)
+}
+.auth-btn:active{transform:translateY(0)}
+.auth-btn:disabled{
+opacity:.55;
+cursor:default;
+transform:none
+}
+.provider-icon{
+width:20px;
+height:20px;
+display:flex
+}
+.provider-icon svg{
+width:20px;
+height:20px
+}
+.message{
+min-height:18px;
+margin-top:15px;
+font-size:12px;
+color:#f87171
+}
+.notice{
+margin-top:25px;
+font-size:11px;
+line-height:1.6;
+color:#555e57
+}
+.footer{
+padding:24px 32px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-align:center
+}
+.footer p{
+font-size:10px;
+line-height:1.6;
+color:#555e57;
+max-width:650px
+}
+.footer a{
+color:#858e87;
+text-decoration:none
+}
+.footer a:hover{color:#f4f7f4}
+@media(max-width:600px){
+.top-logo{
+position:static;
+padding:25px 24px 0
+}
+.top-logo img{width:135px}
+main{padding:60px 24px}
+.auth{max-width:380px}
+h1{font-size:29px}
+.footer{padding:20px 24px}
+}
+</style>
+</head>
+<body>
+
+<header class="top-logo">
+<img src="assets/images/apex-long.webp" alt="Apex One">
+</header>
+
+<main>
+<section class="auth">
+
+<div class="auth-brand">
+<img src="assets/images/apex-logo.webp" alt="Apex">
+</div>
+
+<div class="eyebrow">Staff Portal</div>
+
+<h1>Welcome to Apex One</h1>
+
+<p class="subtitle">
+Sign in with your authorized organization account to continue.
+</p>
+
+<div class="auth-area">
+
+<!-- GOOGLE AUTH
+     COMMENT THIS SECTION TO USE MICROSOFT -->
+<section id="googleAuth">
+<button class="auth-btn" onclick="signIn('google')">
+<span class="provider-icon">
+<svg viewBox="0 0 48 48">
+<path fill="#4285F4" d="M45.12 24.5c0-1.56-.14-3.06-.4-4.5H24v8.51h11.84c-.51 2.75-2.06 5.08-4.39 6.64v5.52h7.11c4.16-3.83 6.56-9.47 6.56-16.17z"/>
+<path fill="#34A853" d="M24 46c5.94 0 10.92-1.97 14.56-5.33l-7.11-5.52c-1.97 1.32-4.49 2.1-7.45 2.1-5.73 0-10.58-3.87-12.31-9.07H4.34v5.7C7.96 41.07 15.4 46 24 46z"/>
+<path fill="#FBBC05" d="M11.69 28.18c-.42-1.26-.66-2.6-.66-4.18s.24-2.92.66-4.18v-5.7H4.34C2.85 17.09 2 20.45 2 24s.85 6.91 2.34 9.88l7.35-5.7z"/>
+<path fill="#EA4335" d="M24 9.75c3.23 0 6.13 1.11 8.41 3.29l6.31-6.31C34.91 3.18 29.93 1 24 1 15.4 1 7.96 4.93 4.34 11.12l7.35 5.7c1.73-5.2 6.58-9.07 12.31-9.07z"/>
+</svg>
+</span>
+Continue with Google
+</button>
+</section>
+
+
+<!-- MICROSOFT AUTH
+     UNCOMMENT THIS AND COMMENT GOOGLE ABOVE -->
+<!--
+<section id="microsoftAuth">
+<button class="auth-btn" onclick="signIn('microsoft')">
+<span class="provider-icon">
+<svg viewBox="0 0 24 24">
+<path fill="#f25022" d="M1 1h10.5v10.5H1z"/>
+<path fill="#7fba00" d="M12.5 1H23v10.5H12.5z"/>
+<path fill="#00a4ef" d="M1 12.5h10.5V23H1z"/>
+<path fill="#ffb900" d="M12.5 12.5H23V23H12.5z"/>
+</svg>
+</span>
+Continue with Microsoft
+</button>
+</section>
+-->
+
+<p id="message" class="message"></p>
+
+</div>
+
+<p class="notice">
+Authorized Apex One staff only.
+</p>
+
+</section>
+</main>
+
+<footer class="footer">
+<p>
+© Apex MCC. Apex One Staff Portal.
+<a href="#">Privacy</a> · <a href="#">Terms</a>
+</p>
+</footer>
+
+<script>
+function signIn(provider){
+const b=event.currentTarget,m=document.getElementById("message"),old=b.innerHTML;
+b.disabled=true;
+b.innerHTML="Signing in…";
+m.textContent="";
+if(provider==="google"){
+//window.location.href="/auth/google";
+}
+if(provider==="microsoft"){
+//window.location.href="/auth/microsoft";
+}
+}
+</script>
+
+</body>
+</html>
